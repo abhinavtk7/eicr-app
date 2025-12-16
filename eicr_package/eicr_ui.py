@@ -46,7 +46,8 @@ class EICRProcessorUI:
         # 2. Event Binding
         self.process_btn.on_click(self._on_process_clicked)
         self.save_btn.on_click(self._on_save_clicked)
-
+        self.upload.observe(self._on_upload_change, names='value')
+        
         # 3. Layout
         self.layout = widgets.VBox([
             widgets.HTML("<h3>EICR PDF Processor</h3>"),
@@ -55,7 +56,13 @@ class EICRProcessorUI:
             self.save_btn,
             self.status
         ])
-
+    
+    def _on_upload_change(self, change):
+        """Callback to update status when a file is uploaded."""
+        # Check if the new value is not empty (i.e., a file was actually selected)
+        if change['new']:
+            self.status.value = "<b>Status:</b> File uploaded"
+            
     def process_eicr_pdf(self, pdf_path):
         """Internal logic to process the PDF using the package."""
         start_time = time.time()
