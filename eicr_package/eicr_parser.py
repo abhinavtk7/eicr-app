@@ -104,7 +104,7 @@ def get_eicr_info(pdf_file: str, model, pages: Optional[list] = None) -> Dict[st
               try:
                 datetime.strptime(created_date_string, '%d/%m/%Y')
                 out["Created at"]["value"] = created_date_string
-                out["Inspection Date"]["confidence"] = get_confidence_for_line(created_date_string, page0)
+                out["Created at"]["confidence"] = get_confidence_for_line(created_date_string, page0)
               except:
                 out["Created at"]["value"] = "-"
                 out["Created at"]["confidence"] = "-"
