@@ -76,7 +76,7 @@ class EICRProcessorUI:
     def process_eicr_pdf(self, pdf_path):
         """Internal logic to process the PDF using the package."""
         start_time = time.time()
-        # Load model (cached if possible, but here we load per call as per your snippet)
+        # Load model
         ocr_model = ocr_predictor(pretrained=True)
 
         eicr_main_record = get_eicr_info(pdf_path, ocr_model)
@@ -101,7 +101,6 @@ class EICRProcessorUI:
         end_time = time.time()
         elapsed = end_time - start_time
         
-        # Print to console (visible in the notebook output log)
         print(f"Total Extraction Time: {elapsed:.2f} seconds")
         
         return merged
